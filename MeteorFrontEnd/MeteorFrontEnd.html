@@ -1,0 +1,109 @@
+<!--
+this html has 3 templates:
+
+1. main template (that is available across two pages)
+2. landing template (for landing page)
+3. article detail template
+-->
+
+
+<head>
+  <title>Readers' Retreat</title>
+  <link rel="stylesheet" type="text/css" href="simple-sidebar.css" />
+</head>
+
+<body id="page-content-wrapper">
+    {{>main}}
+</body>
+
+<template name="main">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        </button>
+        <a class="navbar-brand" href="/">Readers Retreat</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active home-button"><a href="/">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br/>
+  
+  <div style="z-index: 200; height: 70vh;width:13vw" id="sidebar-wrapper">
+    <p>Checkout these links</p>
+    <br/>
+      <ul style="margin-top: 5vh;" class="sidebar-nav">
+      {{#each range }}
+        <li style="width:10vw;height:10vh">
+          <a style="width:inherit;height:inherit" href="#">
+            <img style="width:inherit;height: inherit" src="/images/{{this}}.jpg"/>
+          </a>
+        </li>
+      {{/each }}
+      </ul>
+  </div>
+  
+
+  <div style="z-index: 150;" class="navbar navbar-inverse navbar-fixed-bottom">
+    <p style="margin-left: 15vw;margin-top: 2vh;font-size: large;color: #AAAAAA">Recommended reads</p>
+    {{#if recommendations }}
+      <ul style="text-align: center">
+        {{#each recommendations }}
+          <li style="margin-left: 5vw;display: inline">
+            <div style="cursor: pointer; width: 100px;display: inline-block;" >
+              <img style="width: inherit;height: inherit" src="/static/readerApp/{{ recommendation.imageMain }}" alt="Not found" />
+              <a class="read-more" href="/ArticleDetail/">{{ title }}</a>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{else }}
+      <p style="margin-left: 5vw;margin-top: 2vh;">No articles are available.</p>
+    {{/if}}      
+  </div> 
+</template>
+
+<template name="landing">
+  <div style="z-index: 250; position: fixed;">
+    <form style="margin-top:1vh;margin-left: 15vw;width: 20vw;" class="search-bar">
+     <input style="width: 80vw;height: 5vh;" type="text" name="text" placeholder=" Type to search any article ..." />
+    </form>
+  </div>
+  <ul style="margin-left: 15vw;">
+  {{#each getResponse }}
+    <div class="jumbotron">
+      <div class= "container">
+        <h2>{{title}}</h2>
+        <p>
+            {{text}}
+        </p>
+        <p><a class="btn btn-primary btn-lg read-more" href="/ArticleDetail/" role="button">read more...</a></p>
+      </div>
+    </div>
+  {{/each }}
+  </ul>
+</template>
+
+<template name="ArticleDetail">
+  <div style="margin-left: 15vw;margin-top: 10vh;">
+    <div style="height: 10vh;" class="blog-header">
+      <h1>Readers</h1>
+      <p class="lead-blog-description">{{category}}</p>
+    </div>
+    <div class="blog-main">
+      <div class="blog-post">
+          <h2 class="blog-post-title">{{title}}</h2>
+          <p class="blog-post-meta">
+            {{pub_date}} by <a>{{author}}</a>
+          </p>
+          <p>{{text}}</p>
+      </div>
+    </div>  
+  </div>
+</template>

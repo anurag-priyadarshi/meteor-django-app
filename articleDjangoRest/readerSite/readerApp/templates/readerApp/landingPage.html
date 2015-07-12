@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block articleList %}
+<ul>
+{% for article in article_list %}
+                <div class="jumbotron">
+                    <div class= "container">
+                        <h2>{{article.title}}</h2>
+                        <p >
+                            {{article.text}}
+                        <p>
+                        <p><a class="btn btn-primary btn-lg" href="/readerApp/{{ article.id }}/" role="button">read more...</a></p>
+                    </div>
+                        
+                </div>
+{% endfor %}
+</ul>
+{% endblock %}

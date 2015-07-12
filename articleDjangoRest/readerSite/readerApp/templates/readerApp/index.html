@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block leftNav%}
+{% if article_list %}
+    <ul>
+    {% for article in article_list %}
+        <li><a href="/readerApp/{{ article.id }}/">{{ article.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No articles are available.</p>
+{% endif %}
+{% endblock%}

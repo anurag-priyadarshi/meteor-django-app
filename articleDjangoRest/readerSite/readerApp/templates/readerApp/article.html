@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block article %}
+        <div style="margin-top:10vh;height: 20vh;background-image: url('/static/readerApp/{{imageMain}}');" class="blog-header">
+            <h1>Readers</h1>
+            <p class="lead-blog-description">{{category}}</p>
+        </div>
+        <div class="blog-main">
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{title}}</h2>
+                <p class="blog-post-meta">
+                    {{pub_date}} by<a>{{author}}</a>
+                </p>
+                <p>{{text}}</p>
+            </div>
+        </div>
+{% endblock %}

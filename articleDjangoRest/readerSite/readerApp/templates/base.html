@@ -1,0 +1,75 @@
+<!doctype html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'readerApp/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'readerApp/simple-sidebar.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'readerApp/style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'readerApp/images/R.ico' %}"/>
+    <script src="{% static 'readerApp/jquery.js' %}"></script>
+    <script src="{% static 'readerApp/bootstrap.js' %}"></script>
+    <title>Readers' Retreat</title>
+</head>
+
+<body id="page-content-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            </button>
+            <a class="navbar-brand" href="/">Readers Retreat</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+   
+    <div style="z-index: 200; height: 70vh;width:13vw" id="sidebar-wrapper">
+         
+    <p>Checkout these links</p>
+    <br/>
+       
+        
+        <ul style="margin-top: 5vh" class="sidebar-nav">
+        {% for i in range%}
+            <li style="width:10vw;height:10vh">
+                <a style="width:inherit;height:inherit" href="#">
+                    <img style="width:inherit;height: inherit" src="{% static 'readerApp/images/'%}{{i}}.jpg"/>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div style="margin-left: 15vw">
+    {% block article %}
+    {% endblock %}
+    {% block articleList %}
+    {% endblock %}
+    </div>
+    <div style="z-index: 150;" class="navbar navbar-inverse navbar-fixed-bottom">
+        <p style="margin-left: 5vw;margin-top: 2vh;font-size: large;color: #AAAAAA">Recommended reads</p>
+        {% if recommendations %}
+        <ul style="text-align: center">
+        {% for recommendation in recommendations %}
+            
+            <li style="margin-left: 5vw">
+                <div style="cursor: pointer; width: 100px;display: inline-block;" >
+                    <img style="width: inherit;height: inherit"src="/static/readerApp/{{ recommendation.imageMain }}" alt="Not found" />
+                    <a href="/readerApp/{{ recommendation.pk }}/">{{ recommendation.title }}</a>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p style="margin-left: 5vw;margin-top: 2vh;">No articles are available.</p>
+    {% endif %}
+    </div>   
+    <script src="{% static 'readerApp/jquery.js' %}"></script>
+    <script src="{% static 'readerApp/bootstrap.js' %}"></script>
+</body>
+</html>

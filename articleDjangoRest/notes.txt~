@@ -1,0 +1,6 @@
+python packages and importance of __init__.py
+
+how does django connect to database internally. how does it make all of it so simple
+access multiple databases : https://docs.djangoproject.com/en/1.8/topics/db/multi-db/
+django design philosophies:https://docs.djangoproject.com/en/1.8/misc/design-philosophies/#dry
+how does migration work in django ( it specializes in changing database live)
